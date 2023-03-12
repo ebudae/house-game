@@ -1,10 +1,6 @@
 use std::fs::File;
 use std::io::{Result, Write};
 
-//struct Vertex {
-//    position: [f32; 3],
-//}
-
 fn write_obj_file(vertices: &[Vertex], indices: &[u32], filename: &str) -> Result<()> {
     let mut file = File::create(filename)?;
     for v in vertices {
@@ -39,7 +35,7 @@ fn create_mesh() -> (Vec<Vertex>, Vec<u32>) {
             let x = (i as f32 - 100.0) * 1.0;
             let z = (j as f32 - 100.0) * 1.0;
             let _y = 0.0; // set the y-coordinate to 0, as the mesh is flat
-            let y = (x.powi(2) + z.powi(2)).sqrt().sin() / (x.powi(2) + z.powi(2)).sqrt(); // calculate the y-coordinate using the sinc function
+            let y = ((x/8.0).powi(2) + (z/8.0).powi(2)).sqrt().sin() / ((x/8.0).powi(2) + (z/8.0).powi(2)).sqrt()*5.0; // calculate the y-coordinate using the sinc function
 
             vertices.push(Vertex { x, y, z });
         }
